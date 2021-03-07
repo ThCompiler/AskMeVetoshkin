@@ -1,0 +1,110 @@
+
+<!doctype html>
+<html lang="en" class="h-100">
+    <head>
+        <meta charset="utf-8">
+        <title>Sticky Footer Navbar Template · Bootstrap v5.0</title>
+        
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+
+        <!-- Custom styles for this template -->
+        <link href="css/my_css.css" rel="stylesheet">
+    </head>
+
+    <body class="d-flex flex-column h-100">
+        
+        <header>
+          <!-- Fixed navbar -->
+          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-head">
+            <div class="container-fluid">
+                <div class="row big-head head-heigth">
+                    <div class="col-2">
+                        <a class="navbar-brand head-heigth text-head" href="#"><i><span class="color-head">Ask</span>Me</i></a>
+                    </div>
+                    <div class="col-8">
+                        <form class="d-flex head-heigth">   
+                          <input class="form-control me-7" type="search" placeholder="Найти" aria-label="Search">
+                          <button class="btn btn-outline-danger btn-search" type="submit">Поиск</button>
+                        </form>
+                    </div>
+                    <div class="col-2">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="img/200.jpg" height="50" width="50">
+                            </div>
+                            <div class="col-9">
+                                <div class="user-name">Помидор</div>
+                                <a class="nav-link fix-display tag-pading login" href="#"> Настройки</a>
+                                <a class="nav-link fix-display tag-pading login" href="#"> Выйти</a>
+                            </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </header>
+
+        <!-- Begin page content -->
+        <main class="flex-shrink-0">
+          <div class="container main-body">
+            <div class="row">
+                <div class="col-8 clear-padding left-part">
+                    <h1 class="body-head"> 
+                        Свежые вопросы
+                        <a class="nav-link fix-display new-question" href="#"> Задать вопрос </a>
+                    </h1>
+                    
+
+                    <div class="row question">
+                        <div class="col-2">
+                            <img src="img/200.jpg" height="100" width="100">
+                            <form class ="form-like">   
+                                <button class="btn btn-light btn-like"> + </button>
+                                <span class="like">+50</span>
+                                <button class="btn btn-light btn-like"> - </button>
+                            </form>
+                        </div>
+                        <div class="col-10">
+                            <a href="#"><h2>Lorem ipsum dolor sit amet</h2></a>
+                            <p class ="text-ask">
+                            Существуют две основные трактовки понятия «текст»: имманентная (расширенная, философски нагруженная) и репрезентативная (более частная). Имманентный подход подразумевает отношение к тексту как к автономной реальности, нацеленность на выявление его внутренней структуры. Репрезентативный — рассмотрение текста как особой формы представления информации о внешней тексту действительности.
+                            </p>
+                            <div class="answer-info">
+                                <span> 
+                                    <a class="nav-link head-answer-info fix-display tag-pading" href="#"> Ответов (3)</a>
+                                </span>
+                                <span class="tag-answer"> 
+                                    <b class="head-answer-info"> Тэги: </b> 
+                                    <a class="nav-link fix-display tag-pading" href="#"> Python, </a> 
+                                    <a class="nav-link fix-display tag-pading" href="#"> С++, </a> 
+                                    <a class="nav-link fix-display tag-pading" href="#"> Кот </a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 tag-part">
+                    <h1 class="info"> Популярные тэги </h1>
+                    <p class="info-text"> 
+                        Python C++ Кольца Магазин Король Кошка Нога Хабр
+                    </p>
+                    <h1 class="info"> Известные авторы </h1>
+                    <p class="info-text">
+                        Карл Марк Post Год Мир
+                    </p>
+                </div>
+            </div>
+            <form class ="form-list-page">   
+                <button class="btn btn-outline-primary btn-page style-list-page" type="submit">1</button>
+                <button class="btn btn-outline-primary btn-page style-list-page" type="submit">2</button>
+                <span class="style-list-page">...</span>
+                <button class="btn btn-outline-primary btn-page style-list-page" type="submit">n</button>
+            </form>
+          </div>
+        </main>
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+      
+    </body>
+</html>

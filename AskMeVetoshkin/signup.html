@@ -1,0 +1,97 @@
+
+<!doctype html>
+<html lang="en" class="h-100">
+    <head>
+        <meta charset="utf-8">
+        <title>Sticky Footer Navbar Template · Bootstrap v5.0</title>
+        
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+
+        <!-- Custom styles for this template -->
+        <link href="css/my_css.css" rel="stylesheet">
+    </head>
+
+    <body class="d-flex flex-column h-100">
+        
+        <header>
+          <!-- Fixed navbar -->
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-head">
+                <div class="container-fluid">
+                    <div class="row big-head head-heigth">
+                        <div class="col-2">
+                            <a class="navbar-brand head-heigth text-head" href="#"><i><span class="color-head">Ask</span>Me</i></a>
+                        </div>
+                        <div class="col-8">
+                            <form class="d-flex head-heigth">   
+                              <input class="form-control me-7" type="search" placeholder="Найти" aria-label="Search">
+                              <button class="btn btn-outline-danger btn-search" type="submit">Поиск</button>
+                            </form>
+                        </div>
+                        <div class="col-2 no-user">
+                            <a class="nav-link fix-display tag-pading login" href="#"> Войти </a>
+                            <a class="nav-link fix-display tag-pading login" href="#"> Зарегистрироваться</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Begin page content -->
+        <main class="flex-shrink-0">
+            <div class="container main-body">
+                <div class="row">
+                    <div class="col-8 clear-padding left-part">
+                        <h1 class="body-head"> Регистрация </h1>
+                        <h3 class="error"> Уже существует пользователь с данным логином </h3>
+                        <form id="login" class="width-input">
+                            <div class="mb-3">
+                                <label for="SignupLogin" class="form-label form-title">Логин</label>
+                                <input type="text" class="form-control" id="SignupLogin" placeholder="Povar" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="SignupEmail" class="form-label form-title">Email</label>
+                                <input type="text" class="form-control" id="SignupEmail" placeholder="nan@email.net" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="SignupNick" class="form-label form-title">Username</label>
+                                <input type="text" class="form-control" id="SignupNick" placeholder="Какаду" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="SignupPassword" class="form-label form-title">Пароль</label>
+                                <input type="password" class="form-control" id="SignupPassword" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="SignupRepPassword" class="form-label form-title">Повторите пароль</label>
+                                <input type="password" class="form-control" id="SignupRepPassword" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="SingupFile" class="form-label form-title">Загрузить аватарку</label>
+                                <input type="file" class="form-control fix-singup-padding" id="SingupFile">
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-outline-primary btn-singup" type="submit">Зарегистрироваться</button>
+                            </div> 
+                        </form>
+
+                    </div>
+                    <div class="col-4 tag-part">
+                        <h1 class="info"> Популярные тэги </h1>
+                        <p class="info-text"> 
+                            Python C++ Кольца Магазин Король Кошка Нога Хабр
+                        </p>
+                        <h1 class="info"> Известные авторы </h1>
+                        <p class="info-text">
+                            Карл Марк Post Год Мир
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+           
+        <script src="js/bootstrap.bundle.min.js"></script>
+      
+    </body>
+</html>
