@@ -1,0 +1,357 @@
+
+main > .container {
+  padding: 60px 15px 0;
+}
+
+
+/*---------------------base---------------------*/
+
+
+a {
+	color: blue;
+}
+
+a:active {
+	color: darkblue;
+}
+
+.big-head {
+	width: 100%;
+}
+
+.head-heigth {
+	height: 40px;
+}
+
+.text-head {
+	font-size: 40px;
+	font-family: monospace;
+	border-bottom: 20px;
+	padding-bottom: 10px;
+	padding-top: 0px;
+	line-height: 98%;
+	font-style: italic;
+}
+
+.bg-head {
+	background-color: #05193ee0;
+	height: 80px;
+	border-bottom: 4px red groove;
+}
+
+.color-head {
+	color: #dc3545;
+}
+
+.my-search {
+	position: absolute;
+    left: 450px;
+	width: 1000px;
+}
+
+.btn-search {
+	width: 150px;
+	margin-left: 5px;
+}
+
+.login {
+
+	color: #dc3545;
+	a:active {color :green};
+}
+
+a.login:hover {
+	color: red;
+}
+
+a.login:active {
+	color: #dc3545;
+}
+
+.main-body {
+	position: absolute;
+	margin-top: 30px;
+	margin-right: 100px;
+	margin-left: 10%;
+	max-width: 80%;
+	margin-bottom: 150px;
+}
+
+.tag-part {
+	padding-left: 2%;
+	padding-right: 2%;
+	padding-top: 20px;
+}
+
+.left-part {
+	padding-right: 30px;
+	border-right: 4px #ff002fba groove;
+}
+
+.body-head {
+	font-family: monospace;
+	padding-top: 16px;
+	padding-bottom: 10px;
+	padding-left: 22%;
+	margin-right: -34px;
+	margin-left: -22%;
+	margin-top: -12px;
+	color:#dc3545;
+	background: linear-gradient(45deg, #FFFFFF, #233455d1);
+	border-radius:0px;
+	border-right: 4px #ff002fba groove;
+}
+
+.fix-display {
+	display: inline;
+}
+
+.clear-padding {
+	padding-left: 0px;
+}
+
+.no-user {
+	padding-top: 15px;
+}
+
+.user-name {
+	color: white;
+}
+
+.info {
+	font-family: monospace;
+}
+
+.info-text  {
+	margin-left: 10px;
+	font-size: 20px;
+}
+
+.error {
+	padding-top: 15px;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	font-weight: bold;
+	color: Red;
+	font-size: 14px;
+}
+
+.width-input {
+	width: 50%;
+}
+
+
+/*---------------------index---------------------*/
+
+
+.question {
+	padding: 20px;
+	padding-left: 0px;
+	border: 1px grey solid;
+	border-radius: 5px;
+	margin-bottom: 14px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.new-question {
+	color:white;
+	margin-left: 50%;
+	vertical-align: sub;
+	font-size: 20px;
+}
+
+.new-question:hover {
+	color: red;
+}
+
+.new-question:active {
+	color: white;
+}
+
+.form-like {
+	position: absolute;
+	bottom: 2%;
+}
+
+.like {
+	color: green;
+	font-size: 18px;
+	line-height: normal;
+}
+
+.btn-like {
+	margin-bottom: 6px;
+	font-size: 20px;
+	width: 30px;
+	height: 30px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.form-list-page {
+	margin-left: 0;
+	position: absolute;
+	bottom: -40px;
+}
+
+.style-list-page {
+	font-size: 19px;
+	text-align: center;
+	color: blue;
+}
+
+.btn-page {
+	border-radius: 20px;
+	width: 35px;
+	height: 35px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	
+}
+
+.tag-answer {
+	position: absolute;
+	right: 200px;
+	
+}
+
+.head-answer-info {
+	font-weight: bold;
+}
+
+.tag-pading {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.answer-info {	
+	font-style: italic;
+	font-size: 15.5px;
+}
+
+.text-ask {
+	-moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto
+}
+
+
+/*--------------------question---------------------*/
+
+
+.btn-add-question {
+	margin-top: 30px;
+	font-size: 20px;
+	width: 10%;
+	margin-left: 90%;
+}
+
+.form-title {
+	font-size: 17px;
+	padding-top: 5px;
+}
+
+
+/*---------------------tag---------------------*/
+
+
+.search-tag {
+	margin-left: 4px;
+	font-size: 28px;
+	color: blue;
+}
+
+
+/*---------------------login---------------------*/
+
+
+.new-acc {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.btn-login {
+	margin-top: 5px;
+	font-size: 20px;
+	width: 100px;
+	margin-left: 80%;
+}
+
+
+
+/*---------------------singup---------------------*/
+
+
+.btn-singup {
+	margin-top: 5px;
+	font-size: 20px;
+	width: 230px;
+	margin-left: 54%;
+}
+
+.fix-singup-padding {
+	padding-top : 4px;
+	padding-bottom: 4px;
+}
+
+
+/*---------------------settings---------------------*/
+
+
+.btn-settings {
+	margin-top: 5px;
+	font-size: 20px;
+	width: 140px;
+	margin-left: 73%;
+}
+
+.fix-settings-padding {
+	margin-top: 10px;
+	padding-top : 4px;
+	padding-bottom: 4px;
+}
+
+
+/*---------------------question---------------------*/
+
+.pers-question {
+	padding: 20px;
+	padding-left: 0px;
+	margin-bottom: 14px;
+	margin-left: 0px;
+	margin-right: -30px;
+	border-bottom: 1px red groove;
+}
+
+.correct-style {
+	padding-left: 4px;
+	color:green;
+	font-size: 20px;
+	font-style: italic;
+}
+
+.correct-check {
+	padding-top: 4px;
+	width: 20px;
+	height: 20px;
+}
+
+.enter-answer {
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-left: 0px;
+	margin-left: 0px;
+	margin-right: -30px;
+	font-size:15px;
+	border-top: 2px red groove;
+}
+
+.btn-answer {
+	margin-top: 10px;
+
+}
