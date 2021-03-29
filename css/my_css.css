@@ -156,9 +156,9 @@ a.login:active {
 
 .new-question {
 	color:white;
-	margin-left: 50%;
-	vertical-align: sub;
-	font-size: 20px;
+	text-align: right;
+    margin-top: 5px;
+    font-size: 20px;
 }
 
 .new-question:hover {
