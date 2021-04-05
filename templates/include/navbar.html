@@ -1,0 +1,23 @@
+{% load static %}
+
+<header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-head">
+        <div class="container-fluid">
+            <div class="row big-head head-height">
+                <div class="col-2">
+                    <a class="navbar-brand head-height text-head" href="{% url 'root' %}"><i><span class="color-head">Ask</span>Me</i></a>
+                </div>
+                <div class="col-8">
+                    <form class="d-flex head-height">
+                      <input class="form-control me-7" type="search" placeholder="Найти" aria-label="Search">
+                      <button class="btn btn-outline-danger btn-search" type="submit">Поиск</button>
+                    </form>
+                </div>
+                <div class="col-2">
+                    {%  include "include/not_logined.html" %}
+                </div>
+          </div>
+        </div>
+      </nav>
+</header>

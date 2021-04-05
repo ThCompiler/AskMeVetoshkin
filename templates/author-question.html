@@ -1,0 +1,14 @@
+{% extends "include/base.html" %}
+{% load static %}
+
+{%  block content_head %}
+   Вопросы <i class="search-tag">{{ current_author }}а</i>
+{%  endblock content_head %}
+
+{%  block content %}
+    {% include "include/list_questions.html" %}
+{%  endblock content %}
+
+{%  block content_end %}
+    {% include "include/pagination.html" %}
+{%  endblock content_end %}

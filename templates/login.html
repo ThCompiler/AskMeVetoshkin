@@ -1,0 +1,22 @@
+{% extends "include/base.html" %}
+
+{%  block content_head %}
+    Войти
+{%  endblock content_head %}
+
+{%  block content %}
+    <h3 class="error"> Неверный пороль </h3>
+    <form id="login" class="width-input">
+        <div class="mb-3">
+            <label for="InputLogin" class="form-label form-title">Логин</label>
+            <input type="email" class="form-control" id="InputLogin" aria-describedby="emailHelp" laceholder="login\email">
+        </div>
+        <div class="mb-3">
+            <label for="InputPassword" class="form-label form-title">Пароль</label>
+            <input type="password" class="form-control" id="InputPassword">
+        </div>
+        <span> <a class="nav-link fix-display new-acc" href="/signup/"> Создать аккаунт </a></span>
+        <button class="btn btn-outline-primary btn-login" type="submit">Войти</button>
+
+    </form>
+{%  endblock content %}

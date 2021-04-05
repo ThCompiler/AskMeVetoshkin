@@ -1,0 +1,33 @@
+{% extends "include/base.html" %}
+{% load static %}
+
+{%  block content_head %}
+    Профиль
+{%  endblock content_head %}
+
+{%  block content %}
+    <h3 class="error"> Уже существует пользователь с данным логином </h3>
+    <form id="login" class="width-input">
+        <div class="mb-3">
+            <label for="SignupLogin" class="form-label form-title">Логин</label>
+            <input type="text" class="form-control" id="SignupLogin" value="Povar" required>
+        </div>
+        <div class="mb-3">
+            <label for="SignupEmail" class="form-label form-title">Email</label>
+            <input type="text" class="form-control" id="SignupEmail" value="nan@email.net" required>
+        </div>
+        <div class="mb-3">
+            <label for="SignupNick" class="form-label form-title">Username</label>
+            <input type="text" class="form-control" id="SignupNick" value="Какаду" required>
+        </div>
+        <div class="mb-3">
+            <label for="SingupFile" class="form-label form-title">Загрузить аватарку</label>
+            <div><img src="{% static 'img/200.jpg' %}" height="100" width="100"></div>
+            <input type="file" class="form-control fix-settings-padding" id="SingupFile">
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-outline-primary btn-settings" type="submit">Сохранить</button>
+        </div>
+    </form>
+{%  endblock content %}

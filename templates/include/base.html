@@ -1,0 +1,48 @@
+{% load static %}
+
+<!doctype html>
+<html class="h-100">
+    {%  include "include/head.html" %}
+
+    <body class="d-flex flex-column h-100">
+       {%  include "include/navbar.html" %}
+
+        <!-- Begin page content -->
+        <main class="flex-shrink-0">
+            <div class="container main-body">
+                <div class="row">
+                    <div class="col-8 clear-padding left-part">
+                        <h1 class="body-head">
+                            {%  block content_head %}
+                            {%  endblock content_head %}
+                        </h1>
+                        {%  block content %}
+                        {%  endblock content %}
+                        {%  block content_end %}
+                        {%  endblock content_end %}
+                    </div>
+                    <div class="col-4 tag-part">
+                        {%  block side %}
+                            <h1 class="info"> Популярные тэги </h1>
+                            <p class="info-text">
+                                {% for tag in tags %}
+                                    <a class="nav-link fix-display tag-pading blue-link tag-size shadow-text"
+                                       href="{% url 'current_tag' current_tag=tag %}"> {{ tag }} </a>
+                                {% endfor %}
+                            </p>
+                            <h1 class="info"> Известные авторы </h1>
+                            <p class="info-text">
+                                {% for author in authors %}
+                                    <a class="nav-link fix-display tag-pading blue-link tag-size shadow-text"
+                                       href="{% url 'current_author' current_author=author %}"> {{ author }} </a>
+                                {% endfor %}
+                            </p>
+                        {%  endblock side %}
+                    </div>
+                </div>
+            </div>
+        </main>
+           
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    </body>
+</html>

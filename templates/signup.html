@@ -1,0 +1,39 @@
+{% extends "include/base.html" %}
+
+{%  block content_head %}
+    Регистрация
+{%  endblock content_head %}
+
+{%  block content %}
+    <h3 class="error"> Уже существует пользователь с данным логином </h3>
+    <form id="login" class="width-input">
+        <div class="mb-3">
+            <label for="SignupLogin" class="form-label form-title">Логин</label>
+            <input type="text" class="form-control" id="SignupLogin" placeholder="Povar" required>
+        </div>
+        <div class="mb-3">
+            <label for="SignupEmail" class="form-label form-title">Email</label>
+            <input type="text" class="form-control" id="SignupEmail" placeholder="nan@email.net" required>
+        </div>
+        <div class="mb-3">
+            <label for="SignupNick" class="form-label form-title">Username</label>
+            <input type="text" class="form-control" id="SignupNick" placeholder="Какаду" required>
+        </div>
+        <div class="mb-3">
+            <label for="SignupPassword" class="form-label form-title">Пароль</label>
+            <input type="password" class="form-control" id="SignupPassword" required>
+        </div>
+        <div class="mb-3">
+            <label for="SignupRepPassword" class="form-label form-title">Повторите пароль</label>
+            <input type="password" class="form-control" id="SignupRepPassword" required>
+        </div>
+        <div class="mb-3">
+            <label for="SingupFile" class="form-label form-title">Загрузить аватарку</label>
+            <input type="file" class="form-control fix-singup-padding" id="SingupFile">
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-outline-primary btn-singup" type="submit">Зарегистрироваться</button>
+        </div>
+    </form>
+{%  endblock content %}

@@ -1,0 +1,26 @@
+{% load static %}
+
+<div class="row question">
+    <div class="col-2">
+        <img src="{% static 'img/200.jpg' %}" height="100" width="100">
+        <form class ="form-like">
+            <button class="btn btn-light btn-like"> + </button>
+            <span class="like">+50</span>
+            <button class="btn btn-light btn-like"> - </button>
+        </form>
+    </div>
+    <div class="col-10">
+        <p class ="text-ask">
+        {{ answer.text }}
+        </p>
+        <form class="form-check">
+            <input class="form-check-input correct-check" type="checkbox" value="" id="CheckCorrect">
+            <label class="form-check-label correct-style" for="CheckCorrect">
+                Верно!
+            </label>
+        </form>
+        <h2 class="answer-title"> ответил
+            <a class="nav-link fix-display answer-link" href="{% url 'current_author' current_author=answer.author %}"> {{ answer.author }} </a>
+        </h2>
+    </div>
+</div>
