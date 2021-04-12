@@ -5,6 +5,7 @@
 {%  endblock content_head %}
 
 {%  block content %}
+    <h3 class="error"> Ошибка </h3>
     <form id="new-question">
         <div class="mb-3">
             <label for="TitleForm" class="form-label form-title">Заголовок</label>
@@ -21,7 +22,7 @@
                 <option value="{{ tag }}">
             {% endfor %}
         </datalist>
-        <button class="btn btn-outline-primary btn-add-question" type="submit">Задать</button>
+        <button class="btn float-right btn-outline-primary btn-add-question" type="submit">Задать</button>
     </form>
 {%  endblock content %}
 

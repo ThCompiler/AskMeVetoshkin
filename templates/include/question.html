@@ -18,7 +18,9 @@
         </p>
         <div class="question-info">
             <span>
-                <a class="nav-link head-answer-info fix-display tag-pading blue-link" href="{% url 'current_question' pk=question.id %}?#first_answer"> Ответов (3)</a>
+                <a class="nav-link head-answer-info fix-display tag-pading blue-link" href="{% url 'current_question' pk=question.id %}?#first_answer">
+                    Ответов ({{ question.answers | length }})
+                </a>
             </span>
             <span class="tag-answer">
                 {% if question.tags.list %}

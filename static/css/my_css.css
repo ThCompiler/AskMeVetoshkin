@@ -70,9 +70,12 @@ a.login:active {
 }
 
 .main-body {
-	position: absolute;
-	max-width: 80%;
-	margin: 30px 100px 150px 10%;
+	max-width: 1630px;
+	margin-top: 30px;
+}
+
+footer > .container {
+	max-width: 1630px;
 }
 
 .tag-part {
@@ -114,6 +117,8 @@ a.login:active {
 
 .user-name {
 	color: white;
+	padding-left: 15px;
+	padding-right: 100px;
 }
 
 .info {
@@ -133,6 +138,7 @@ a.login:active {
 	color: Red;
 	font-size: 14px;
 }
+
 
 .width-input {
 	width: 50%;
@@ -256,7 +262,7 @@ a.login:active {
 	text-align: right;
     margin-top: 5px;
     font-size: 20px;
-	margin-left: 24%;
+	margin-left: -20%;
 }
 
 .like {
@@ -295,13 +301,19 @@ a.login:active {
 }
 
 .tag-answer {
-	position: absolute;
-	right: 20px;
-	
+	float: right;
 }
 
 .head-answer-info {
 	font-weight: bold;
+}
+
+.main-tag-pading {
+	margin: 10px 2px;
+}
+
+.login-table {
+	padding-left: 10px;
 }
 
 .tag-pading {
@@ -309,12 +321,49 @@ a.login:active {
 	padding-right: 2px;
 }
 
+.zero-right-padding {
+	padding-right: 0;
+}
+
 .tag-size {
 	font-family: Kalapi, fantasy;
 	font-size: 25px;
 }
+
+.purp-link {
+	color: rgb(77, 42, 107);
+	text-shadow: rgb(125, 17, 202) 0 0 25px;
+}
+
+.purp-link:hover {
+	color: #c6272c;
+}
+
+.purp-link:active {
+	color: rgb(77, 42, 107);
+}
+
+.red-link {
+	color: rgb(88, 7, 7);
+	text-shadow: rgb(207, 10, 10) 0 0 25px;
+}
+
+.red-link:hover {
+	color: #2747c6;
+	text-shadow: rgb(58, 74, 183) 0 0 25px;
+}
+
+.red-link:active {
+	color: rgb(88, 7, 7);
+}
+
+.blue-shadow {
+	text-shadow: rgb(58, 74, 183) 0 0 25px;
+}
+
 .blue-link {
 	color: rgba(7, 38, 88, 0.88);
+
 }
 
 .blue-link:hover {
@@ -376,8 +425,7 @@ a.login:active {
 .btn-add-question {
 	margin-top: 30px;
 	font-size: 20px;
-	width: 10%;
-	margin-left: 90%;
+	width: 100px;
 }
 
 .form-title {

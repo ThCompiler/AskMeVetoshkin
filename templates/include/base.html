@@ -26,8 +26,17 @@
                             <h1 class="info"> Популярные тэги </h1>
                             <p class="info-text">
                                 {% for tag in tags %}
-                                    <a class="nav-link fix-display tag-pading blue-link tag-size shadow-text"
+                                    {% if forloop.counter0 <= 1 %}
+                                        <a class="nav-link fix-display main-tag-pading red-link tag-size shadow-text"
                                        href="{% url 'current_tag' current_tag=tag %}"> {{ tag }} </a>
+                                    {% elif forloop.counter0 <= 3 %}
+                                        <a class="nav-link fix-display main-tag-pading purp-link tag-size"
+                                       href="{% url 'current_tag' current_tag=tag %}"> {{ tag }} </a>
+                                    {% else %}
+                                        <a class="nav-link fix-display main-tag-pading blue-shadow blue-link tag-size shadow-text"
+                                       href="{% url 'current_tag' current_tag=tag %}"> {{ tag }} </a>
+                                    {% endif %}
+
                                 {% endfor %}
                             </p>
                             <h1 class="info"> Известные авторы </h1>
@@ -41,8 +50,9 @@
                     </div>
                 </div>
             </div>
+
         </main>
-           
+        {% include "include/footer.html" %}
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     </body>
 </html>

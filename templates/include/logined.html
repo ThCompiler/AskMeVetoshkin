@@ -1,12 +1,14 @@
 {% load static %}
-
-<div class="row">
-    <div class="col-3">
+<div class = "float-right">
+    <div class="fix-display float-left">
         <img src="{% static 'img/200.jpg' %}" height="50" width="50">
     </div>
-    <div class="col-9">
-        <div class="user-name">Помидор</div>
+    <table class="fix-display login-table">
+    <tr><th class="user-name float-left">Помидор</th></tr>
+    <tr class="float-left" ><td>
         <a class="nav-link fix-display tag-pading login" href="{% url 'settings' %}"> Настройки</a>
-        <a class="nav-link fix-display tag-pading login" href="#"> Выйти</a>
-    </div>
+    </td>
+        <td><a class="nav-link fix-display tag-pading login" href="#"> Выйти</a>
+        </td></tr> <!--ряд с ячейками тела таблицы-->
+    </table>
 </div>
