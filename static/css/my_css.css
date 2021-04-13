@@ -259,7 +259,7 @@ footer > .container {
 }
 
 .new-question {
-	text-align: right;
+	float: right;
     margin-top: 5px;
     font-size: 20px;
 	margin-left: -20%;
@@ -309,7 +309,8 @@ footer > .container {
 }
 
 .main-tag-pading {
-	margin: 10px 2px;
+	margin: 10px 6px;
+	padding: 0;
 }
 
 .login-table {
