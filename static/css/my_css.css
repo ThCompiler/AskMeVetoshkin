@@ -107,6 +107,17 @@ footer > .container {
 	display: inline;
 }
 
+.list-author {
+	display: block;
+	float: left;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.clear-top-bot-padding {
+	padding-top: 0;
+	padding-bottom: 0;
+}
 .clear-padding {
 	padding-left: 0;
 }
@@ -168,10 +179,13 @@ footer > .container {
 	display: inline-block;
 }
 
+.page-dot {
+	min-width: 44px;
+}
 .page-num > .page-text, .page-selected > .page-text, .page-dot > .page-text {
 	text-align: center;
 	display: inline-block;
-	width: 44px;
+	min-width: 44px;
 	height: 44px;
 	margin-left: 5px;
 	margin-right: 5px;
@@ -265,8 +279,21 @@ footer > .container {
 	margin-left: -20%;
 }
 
+
+.netrallike {
+	color: #000000;
+	font-size: 18px;
+	line-height: normal;
+}
+
 .like {
 	color: green;
+	font-size: 18px;
+	line-height: normal;
+}
+
+.dislike {
+	color: red;
 	font-size: 18px;
 	line-height: normal;
 }
@@ -387,10 +414,13 @@ footer > .container {
 	font-size: 16px;
 }
 
+.likes-form {
+	text-align: center;
+}
+
 .text-ask {
-	-moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
+	text-align: justify;
+    padding-bottom: 20px;
 	margin-bottom: 20px;
 }
 
@@ -497,6 +527,7 @@ footer > .container {
 .question-title {
 	color: black;
 	margin-left: -30px;
+	white-space: normal;
 }
 
 .question-title > .shadow-text:hover {
@@ -545,14 +576,24 @@ footer > .container {
 	border-top: 2px red groove;
 }
 
+.date-publish {
+	padding-top: 5px;
+	display: inline;
+	margin-left: -30px;
+	margin-bottom: -10px;
+	color: #1e51c4;
+	font-size: 18px;
+	float:left;
+	font-family: "Droid Sans Mono", cursive;
+	text-shadow: rgba(208, 11, 11, 0.8) 0 0 2px;
+}
+
 .answer-title {
 	display: inline;
 	margin-left: -30px;
 	color: #0f4c11;
 	font-size: 18px;
-	position: absolute;
-	right: 0;
-	bottom: 0;
+	float:right;
 }
 
 .answer-link {

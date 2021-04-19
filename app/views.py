@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from app.models import Author, Question, Tag, AnswerLike, Answer, QuestionLike
 
 from django.shortcuts import render
 import random
@@ -49,58 +50,82 @@ questions = [
             {
                 'author': random.choice(authors),
                 'text': f'{idx2} answer for question #{idx}'
-            } for idx2 in range(random.randint(0, 3))
+            } for idx2 in range(random.randint(0, 20))
         ]
     } for idx in range(10)
 ]
 
 
-def paginate(obj_list, page_number, per_page=5):
+def convert_question(date):
+    questions = []
+    for question in date:
+        questions.append(
+            {
+                'id': question.pk,
+                'title': question.title,
+                'text': question.text,
+                'tags': {
+                    'list': question.tags,
+                    'last': question.tags.all()[len(question.tags.all())-1]
+                },
+                'author': question.author,
+                'answers': [
+                    {
+                        'author': random.choice(authors),
+                        'text': f'{idx2} answer for question'
+                    } for idx2 in range(random.randint(0, 20))]
+            }
+        )
+    return questions
+
+
+def paginate(obj_list, page_number, per_page=10):
     paginator = Paginator(obj_list, per_page)
     return paginator.get_page(page_number)
 
 
 def index(request):
-    return render(request, 'index.html', {'page_obj': paginate(questions, request.GET.get('page')), 'tags': tags, 'authors': authors})
+    #print(Question.objects.base_list_question().all()[1].reting)
+    return render(request, 'index.html', {'page_obj': paginate(Question.objects.base_list_question().all(), request.GET.get('page')),
+                                          'tags': Tag.objects.get_top(10).all(), 'authors': Author.objects.get_top(12).all()})
 
 
 def tag_questions(request, current_tag):
-    select = []
-    for question in questions:
-        if current_tag in question['tags']['list']:
-            select.append(question)
-    return render(request, 'tag.html', {'page_obj': paginate(select, request.GET.get('page')), 'tags': tags, 'authors': authors, 'current_tag': current_tag})
+    return render(request, 'tag.html', {'page_obj': paginate(Question.objects.get_by_tag(current_tag), request.GET.get('page')),
+                                        'tags': Tag.objects.get_top(10).all(), 'authors': Author.objects.get_top(12).all(), 'current_tag': current_tag})
 
 
 def author_questions(request, current_author):
-    select = []
-    for question in questions:
-        if current_author == question['author']:
-            select.append(question)
-    return render(request, 'author-question.html', {'page_obj': paginate(select, request.GET.get('page')), 'tags': tags, 'authors': authors, 'current_author': current_author})
+    return render(request, 'author-question.html', {'page_obj': paginate(Question.objects.get_list_by_id_author(current_author), request.GET.get('page')),
+                    'tags': Tag.objects.get_top(10).all(), 'authors': Author.objects.get_top(12).all(),
+                                                    'current_author': Author.objects.get(id=current_author)})
 
 
 def hot_questions(request):
-    return render(request, 'hot-question.html', {'page_obj': paginate(questions, request.GET.get('page')), 'authors': authors, 'tags': tags})
+    return render(request, 'hot-question.html', {'page_obj': paginate(Question.objects.get_top(300).all(), request.GET.get('page')),
+                                                 'authors':  Author.objects.get_top(12).all(), 'tags': Tag.objects.get_top(10).all()})
 
 
 def new_questions(request):
-    return render(request, 'ask.html', {'tags': tags, 'authors': authors})
+    return render(request, 'ask.html', {'tags': Tag.objects.get_top(10).all(), 'authors':  Author.objects.get_top(12).all()})
 
 
 def log_in(request):
-    return render(request, 'login.html', {'tags': tags, 'authors': authors})
+    return render(request, 'login.html', {'tags': Tag.objects.get_top(10).all(), 'authors': Author.objects.get_top(12).all()})
 
 
 def sign_up(request):
-    return render(request, 'signup.html', {'tags': tags, 'authors': authors})
+    return render(request, 'signup.html', {'tags': Tag.objects.get_top(10).all(), 'authors': Author.objects.get_top(12).all()})
 
 
 def current_question(request, pk):
-    return render(request, 'question.html', {'question': questions[pk], 'tags': tags, 'authors': authors})
+    object = Question.objects.base_list_question().get(pk=pk)
+    return render(request, 'question.html', {'object': object,
+                                             'page_obj': paginate(Answer.objects.base_list_answer(pk).all(), request.GET.get('page'), 5),
+                                             'tags': Tag.objects.get_top(10).all(), 'authors':  Author.objects.get_top(12).all()})
 
 
 def settings(request):
-    return render(request, 'settings.html', {'tags': tags, 'authors': authors})
+    return render(request, 'settings.html', {'tags': Tag.objects.get_top(10).all(), 'authors': Author.objects.get_top(12).all()})
 
 # Create your views here.

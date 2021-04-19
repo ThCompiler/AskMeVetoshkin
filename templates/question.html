@@ -2,33 +2,29 @@
 {% load static %}
 
 {%  block content_head %}
-   {{ question.title }}
+   {{ object.title }}
 {%  endblock content_head %}
 
 {%  block content %}
     <a name="first_answer"></a>
     <div class="row pers-question">
         <div class="col-2">
-            <img src="{% static 'img/200.jpg' %}" height="100" width="100">
-            <form class ="form-like">
-                <button class="btn btn-light btn-like"> + </button>
-                <span class="like">+50</span>
-                <button class="btn btn-light btn-like"> - </button>
-            </form>
+            <img src="{{ object.author.image.url }}" height="100" width="100">
+            {% include "include/likes.html" %}
         </div>
         <div class="col-10">
             <h2 class = "author-name">
-                <a class="nav-link fix-display author-link" href="{% url 'current_author' current_author=question.author %}"> {{question.author}} </a>
+                <a class="nav-link fix-display author-link" href="{% url 'current_author' current_author=object.author_id %}"> {{object.author}} </a>
                 спрашивает:
             </h2>
             <p class ="text-ask">
-                {{ question.text }}
+                {{ object.text }}
             </p>
             <div class="answer-info">
-                {% if question.tags.list %}
+                {% if object.tags %}
                     <b class="head-answer-info"> Тэги: </b>
-                    {% for tag in question.tags.list %}
-                        {% if tag == question.tags.last %}
+                    {% for tag in object.tags.all %}
+                        {% if tag == object.tags.last %}
                             <a class="nav-link fix-display tag-pading blue-link" href="{% url 'current_tag' current_tag=tag %}"> {{ tag }} </a>
                         {% else %}
                             <a class="nav-link fix-display tag-pading blue-link" href="{% url 'current_tag' current_tag=tag %}"> {{ tag }}, </a>
@@ -38,17 +34,17 @@
             </div>
         </div>
     </div>
-    {% if question.answers %}
-        {% for answer in question.answers %}
+    {% if page_obj %}
+        {% for object in page_obj %}
             {% include "include/answer.html" %}
         {% endfor %}
-        {% include "include/pagination.html" %}
     {% else %}
         <h1 class = "empty-answers">Здесь может быть ваш ответ</h1>
     {% endif %}
 {%  endblock content %}
 
 {%  block content_end %}
+    {% include "include/pagination.html" %}
     <form id="new-answer" class="enter-answer">
         <div class="mb-3">
             <textarea class="form-control form-control-lg" id="TextForm" placeholder="Введите ваш ответ" rows="4" required></textarea>

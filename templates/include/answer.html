@@ -2,16 +2,12 @@
 
 <div class="row question">
     <div class="col-2">
-        <img src="{% static 'img/200.jpg' %}" height="100" width="100">
-        <form class ="form-like">
-            <button class="btn btn-light btn-like"> + </button>
-            <span class="like">+50</span>
-            <button class="btn btn-light btn-like"> - </button>
-        </form>
+        <img src="{{ object.author.image.url }}" height="100" width="100">
+        {% include "include/likes.html" %}
     </div>
     <div class="col-10">
         <p class ="text-ask">
-        {{ answer.text }}
+        {{ object.text }}
         </p>
         <form class="form-check">
             <input class="form-check-input correct-check" type="checkbox" value="" id="CheckCorrect">
@@ -20,7 +16,8 @@
             </label>
         </form>
         <h2 class="answer-title"> ответил
-            <a class="nav-link fix-display answer-link" href="{% url 'current_author' current_author=answer.author %}"> {{ answer.author }} </a>
+            <a class="nav-link fix-display answer-link" href="{% url 'current_author' current_author=object.author_id %}"> {{ object.author }} </a>
         </h2>
+        <p class="date-publish">{{object.date|date:"d/m/Y"}}</p>
     </div>
 </div>

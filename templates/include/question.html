@@ -2,31 +2,27 @@
 
 <div class="row question">
     <div class="col-2">
-        <img src="{% static 'img/200.jpg' %}" height="100" width="100">
-        <form>
-            <button class="btn btn-light btn-like"> + </button>
-            <span class="like">+50</span>
-            <button class="btn btn-light btn-like"> - </button>
-        </form>
+        <img src="{{  object.author.image.url }}" height="100" width="100">
+        {% include "include/likes.html" %}
     </div>
     <div class="col-10">
-        <a class="navbar-brand question-title" href="{% url 'current_question' pk=question.id %}">
-            <h2 class="shadow-text">{{ question.title }}</h2>
+        <a class="question-title navbar-brand shadow-text" href="{% url 'current_question' pk=object.id %}">
+            {{ object.title }}
         </a>
         <p class ="text-ask">
-            {{ question.text }}
+            {{ object.text|truncatewords:50 }}
         </p>
         <div class="question-info">
             <span>
-                <a class="nav-link head-answer-info fix-display tag-pading blue-link" href="{% url 'current_question' pk=question.id %}?#first_answer">
-                    Ответов ({{ question.answers | length }})
+                <a class="nav-link head-answer-info fix-display tag-pading blue-link" href="{% url 'current_question' pk=object.id %}?#first_answer">
+                    Ответов ({{ object.num_answer }})
                 </a>
             </span>
             <span class="tag-answer">
-                {% if question.tags.list %}
+                {% if object.tags %}
                     <b class="head-answer-info"> Тэги: </b>
-                    {% for tag in question.tags.list %}
-                        {% if tag == question.tags.last %}
+                    {% for tag in object.tags.all %}
+                        {% if tag == object.tags.last %}
                             <a class="nav-link fix-display tag-pading blue-link" href="{% url 'current_tag' current_tag=tag %}"> {{ tag }} </a>
                         {% else %}
                             <a class="nav-link fix-display tag-pading blue-link" href="{% url 'current_tag' current_tag=tag %}"> {{ tag }}, </a>

@@ -1,0 +1,11 @@
+<form class="likes-form">
+    <button class="btn btn-light btn-like"> + </button>
+    {% if object.rating > 0 %}
+        <span class="like">+{{ object.rating }}</span>
+    {% elif object.rating < 0 %}
+        <span class="dislike">{{ object.rating }}</span>
+    {% else %}
+        <span class="netrallike">{{ object.rating|default:"0" }}</span>
+    {% endif %}
+    <button class="btn btn-light btn-like"> - </button>
+</form>

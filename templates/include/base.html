@@ -36,16 +36,15 @@
                                         <a class="nav-link fix-display main-tag-pading blue-shadow blue-link tag-size shadow-text"
                                        href="{% url 'current_tag' current_tag=tag %}"> {{ tag }} </a>
                                     {% endif %}
-
                                 {% endfor %}
                             </p>
                             <h1 class="info"> Известные авторы </h1>
-                            <p class="info-text">
+                            <ul class="list-group list-group-flush ">
                                 {% for author in authors %}
-                                    <a class="nav-link fix-display tag-pading blue-link tag-size shadow-text"
-                                       href="{% url 'current_author' current_author=author %}"> {{ author }} </a>
+                                    <li class="float-left clear-top-bot-padding clear-padding list-group-item"><a class="float-left list-author nav-link tag-pading blue-link tag-size shadow-text"
+                                       href="{% url 'current_author' current_author=author.pk %}"> {{ author }} </a></li>
                                 {% endfor %}
-                            </p>
+                            </ul>
                         {%  endblock side %}
                     </div>
                 </div>
