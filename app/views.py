@@ -91,11 +91,17 @@ def index(request):
 
 
 def tag_questions(request, current_tag):
+    if not Tag.objects.contain(current_tag):
+        return render(request, 'error_page.html', {'tags': Tag.objects.get_top(10).all(), 'authors': Author.objects.get_top(12).all()})
+
     return render(request, 'tag.html', {'page_obj': paginate(Question.objects.get_by_tag(current_tag), request.GET.get('page')),
                                         'tags': Tag.objects.get_top(10).all(), 'authors': Author.objects.get_top(12).all(), 'current_tag': current_tag})
 
 
 def author_questions(request, current_author):
+    if not Author.objects.contain(current_author):
+        return render(request, 'error_page.html', {'tags': Tag.objects.get_top(10).all(), 'authors': Author.objects.get_top(12).all()})
+
     return render(request, 'author-question.html', {'page_obj': paginate(Question.objects.get_list_by_id_author(current_author), request.GET.get('page')),
                     'tags': Tag.objects.get_top(10).all(), 'authors': Author.objects.get_top(12).all(),
                                                     'current_author': Author.objects.get(id=current_author)})
@@ -119,6 +125,9 @@ def sign_up(request):
 
 
 def current_question(request, pk):
+    if not Question.objects.contain(pk):
+        return render(request, 'error_page.html', {'tags': Tag.objects.get_top(10).all(), 'authors': Author.objects.get_top(12).all()})
+
     object = Question.objects.base_list_question().get(pk=pk)
     return render(request, 'question.html', {'object': object,
                                              'page_obj': paginate(Answer.objects.base_list_answer(pk).all(), request.GET.get('page'), 5),

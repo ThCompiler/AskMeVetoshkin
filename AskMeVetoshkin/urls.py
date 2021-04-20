@@ -19,6 +19,7 @@ from django.urls import path, include
 from app import views
 
 urlpatterns = [
+    #path('silk/', include('silk.urls', namespace='silk')),
     path('admin/', admin.site.urls),
     path('hot/', views.hot_questions, name="hot_question"),
     path('author/<int:current_author>/', views.author_questions, name="current_author"),

@@ -6,7 +6,12 @@ from django.db.models import Prefetch
 
 class AuthorManager(models.Manager):
     def get_top(self, number):
-        return self.all().annotate(number_answers=models.Count('answer_author')).order_by('-number_answers').prefetch_related('profile')[0:number]
+        return self.all().annotate(number_answers=models.Count('answer_author'))\
+                .order_by('-number_answers').prefetch_related(
+             Prefetch('profile', queryset=User.objects.all().only('pk', 'username')))[0:number]
+
+    def contain(self, pk):
+        return self.filter(pk=pk).exists()
 
 
 class Author(models.Model):
@@ -31,6 +36,9 @@ class TagManager(models.Manager):
         return self.annotate(number_question=models.Count('question_tags'))\
                     .order_by('-number_question')[0:number]
 
+    def contain(self, name):
+        return self.filter(name=name).exists()
+
 
 class Tag(models.Model):
     name = models.CharField('Имя', max_length=255)
@@ -52,20 +60,24 @@ class QuestionManager(models.Manager):
     def get_by_tag(self, tag):
         return self.base_list_question().filter(tags__name__exact=tag).prefetch_related()
 
-    def __count_answer(self):
-        return self.annotate(num_answer=models.Count('answer_question', distinct=True))
-
     def get_by_id(self, pk):
-        return self.filter(pk=pk).annotate(rating=models.Sum('question_likes__number')).prefetch_related(
-            Prefetch('author', queryset=Author.objects.all().select_related('profile').only('image', 'profile__username')),
-            Prefetch('tags', queryset=Tag.objects.all())
-        ).only('author_id', 'tags__name', 'author__profile__username', 'text', 'title', 'pk', 'author__image')
+        return self.filter(pk=pk).prefetch_related(
+            Prefetch('author', queryset=Author.objects.all().prefetch_related(
+                Prefetch('profile', queryset=User.objects.all().only('username'))
+                ).only('image', 'profile__username')),
+
+            Prefetch('tags', queryset=Tag.objects.all().only('name'))
+        ).only('author_id', 'tags', 'author__profile__username', 'text', 'title', 'pk', 'author__image', 'author', 'rating')
 
     def base_list_question(self):
-        return self.__count_answer().annotate(rating=models.Sum('question_likes__number')).prefetch_related(
-            Prefetch('author', queryset=Author.objects.all().select_related('profile').only('image', 'profile__username')),
+        return self.annotate(num_answer=models.Count('answer_question', distinct=True))\
+            .prefetch_related(
+            Prefetch('author', queryset=Author.objects.all().only('image', 'pk')),
             Prefetch('tags', queryset=Tag.objects.all())
-        ).only('author_id', 'tags__name', 'author__profile__username', 'text', 'title', 'pk', 'author__image')
+        ).only('author_id', 'tags', 'text', 'title', 'pk', 'author__image', 'rating')
+
+    def contain(self, pk):
+        return self.filter(pk=pk).exists()
 
     def get_list_by_id_author(self, author):
         return self.base_list_question().filter(author__id__exact=author).prefetch_related()
@@ -74,9 +86,11 @@ class QuestionManager(models.Manager):
 class Question(models.Model):
     title = models.CharField('Заголовок', max_length=500)
     text = models.TextField('Текст')
-    date = models.DateTimeField('Дата публикации', default=datetime.now)
+    date = models.DateTimeField('Дата публикации', auto_now_add=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='автор', related_name='question_author')
     tags = models.ManyToManyField(Tag, verbose_name='тэги', related_name='question_tags')
+
+    rating = models.IntegerField('Рейтинг', default=0)
 
     objects = QuestionManager()
 
@@ -90,7 +104,7 @@ class Question(models.Model):
 
 
 class QuestionLike(models.Model):
-    number = models.IntegerField('Число', choices=(('like', 1), ('not_active', 0), ('dislike', -1)))
+    number = models.IntegerField('Число', choices=(('like', 1), ('dislike', -1)))
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='автор', related_name='question_like_author')
     question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='вопрос',
                                  related_name='question_likes')
@@ -101,22 +115,25 @@ class QuestionLike(models.Model):
     class Meta:
         verbose_name = 'ЛайкНаВопрос'
         verbose_name_plural = 'ЛайкиВопросов'
+        unique_together = ('author', 'question')
 
 
 class AnswerManager(models.Manager):
     def base_list_answer(self, question_id):
-        return self.filter(question_id=question_id).annotate(rating=models.Sum('answer_likes__number')).prefetch_related(
-            Prefetch('author',
-                     queryset=Author.objects.all().select_related('profile').only('image', 'profile__username'))
-        ).only('author_id', 'author__profile__username', 'text', 'pk', 'author__image')
+        return self.filter(question_id=question_id).prefetch_related(
+            Prefetch('author', queryset=Author.objects.all().prefetch_related(
+                Prefetch('profile', queryset=User.objects.all().only('username'))).only('pk', 'image', 'profile__username'))
+        ).only('author_id', 'author__profile__username', 'text', 'pk', 'author__image', 'date', 'rating')
 
 
 class Answer(models.Model):
     is_right = models.BooleanField('Верный ли ответ', default=False)
     text = models.TextField('Текст')
-    date = models.DateTimeField('Дата публикации', default=datetime.now)
+    date = models.DateTimeField('Дата публикации', auto_now_add=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='автор', related_name='answer_author')
     question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='вопрос', related_name='answer_question')
+
+    rating = models.IntegerField('Рейтинг', default=0)
 
     objects = AnswerManager()
 

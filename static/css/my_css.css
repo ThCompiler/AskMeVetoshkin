@@ -169,6 +169,11 @@ footer > .container {
 	margin: 0 20px 0 0;
 }
 
+.center-img {
+	display: block;
+    margin: auto;
+}
+
 .list-pages a {
 	color: #000;
 	font-size: 26px;

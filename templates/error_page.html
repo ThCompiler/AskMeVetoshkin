@@ -1,0 +1,13 @@
+{% extends "include/base.html" %}
+{% load static %}
+
+{% block content_head %}
+    К сожелению, данная запись не была найдена
+{% endblock content_head %}
+
+
+{%  block content %}
+    <div class="align-content-md-center">
+        <img src="{% static 'img/error_404.jpg' %}" height="600" width="900">
+    </div>
+{%  endblock content %}
