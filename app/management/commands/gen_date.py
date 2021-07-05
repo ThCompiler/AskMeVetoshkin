@@ -15,6 +15,7 @@ class Command(BaseCommand):
                 gen.Tag.objects.all().delete()
             elif options['type'] == 'authors':
                 gen.Author.objects.all().delete()
+                gen.User.objects.exclude(username='thecompiler').delete()
             elif options['type'] == 'ans_likes':
                 gen.AnswerLike.objects.all().delete()
         else:

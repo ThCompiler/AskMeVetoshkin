@@ -1,14 +1,17 @@
 {% load static %}
 <div class = "float-right">
     <div class="fix-display float-left">
-        <img src="{% static 'img/200.jpg' %}" height="50" width="50">
+        <img src="{{ request.user.author_users.image.url }}" height="50" width="50">
     </div>
     <table class="fix-display login-table">
-    <tr><th class="user-name float-left">Помидор</th></tr>
+    <tr><th class="user-name float-left">
+        <a class="nav-link log-author" href="{% url 'current_author' current_author=request.user.author_users.id %}">
+            {{ request.user.first_name }}
+        </a></th></tr>
     <tr class="float-left" ><td>
         <a class="nav-link fix-display tag-pading login" href="{% url 'settings' %}"> Настройки</a>
     </td>
-        <td><a class="nav-link fix-display tag-pading login" href="#"> Выйти</a>
+        <td><a class="nav-link fix-display tag-pading login" href="{% url 'logout' %}?next={{ request.get_full_path|urlencode }}"> Выйти</a>
         </td></tr> <!--ряд с ячейками тела таблицы-->
     </table>
 </div>

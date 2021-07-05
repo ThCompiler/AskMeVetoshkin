@@ -58,7 +58,7 @@ def get_tag(filename):
 rus = faker.Faker('ru_RU')
 eng = faker.Faker()
 
-path_to_img = "./static/img/users/"
+path_to_img = "./media/users/"
 
 
 def generate_img():
@@ -86,7 +86,8 @@ def generate_user(number):
         uses_nik.append(nik)
 
         us = User(first_name=rus.first_name(), last_name=rus.last_name(), username=nik,
-                  email=rus.simple_profile()['mail'], password=rus.password())
+                  email=rus.simple_profile()['mail'])
+        us.set_password(rus.password())
         us.save()
         a = Author(image=(path_to_img + generate_img()), profile=us)
         a.save()
@@ -205,7 +206,7 @@ def update_answer_rating():
             print(answer.pk)
         answer.save()
 
-update_answer_rating()
+#update_answer_rating()
 # Question.objects.all().delete()
 # Tag.objects.all().delete()
 # Author.objects.all().delete()

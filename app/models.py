@@ -8,7 +8,7 @@ class AuthorManager(models.Manager):
     def get_top(self, number):
         return self.all().annotate(number_answers=models.Count('answer_author'))\
                 .order_by('-number_answers').prefetch_related(
-             Prefetch('profile', queryset=User.objects.all().only('pk', 'username')))[0:number]
+             Prefetch('profile', queryset=User.objects.all().only('pk', 'first_name')))[0:number]
 
     def contain(self, pk):
         return self.filter(pk=pk).exists()
@@ -21,7 +21,7 @@ class Author(models.Model):
     objects = AuthorManager()
 
     def __str__(self):
-        return self.profile.username
+        return self.profile.first_name
 
     def get_url(self):
         return
@@ -48,6 +48,13 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    @classmethod
+    def get_or_create(cls, value):
+        if cls.objects.filter(name=value).exists():
+            return cls.objects.get(name=value)
+        else:
+            return cls.objects.create(name=value)
+
     class Meta:
         verbose_name = 'Тэг'
         verbose_name_plural = 'Тэги'
@@ -63,11 +70,11 @@ class QuestionManager(models.Manager):
     def get_by_id(self, pk):
         return self.filter(pk=pk).prefetch_related(
             Prefetch('author', queryset=Author.objects.all().prefetch_related(
-                Prefetch('profile', queryset=User.objects.all().only('username'))
+                Prefetch('profile', queryset=User.objects.all().only('first_name'))
                 ).only('image', 'profile__username')),
 
             Prefetch('tags', queryset=Tag.objects.all().only('name'))
-        ).only('author_id', 'tags', 'author__profile__username', 'text', 'title', 'pk', 'author__image', 'author', 'rating')
+        ).only('author_id', 'tags', 'author__profile__first_name', 'text', 'title', 'pk', 'author__image', 'author', 'rating')
 
     def base_list_question(self):
         return self.annotate(num_answer=models.Count('answer_question', distinct=True))\

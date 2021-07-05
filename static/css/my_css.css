@@ -126,6 +126,10 @@ footer > .container {
 	padding-top: 15px;
 }
 
+.log-author {
+	padding: 0;
+	color: white;
+}
 .user-name {
 	color: white;
 	padding-left: 15px;

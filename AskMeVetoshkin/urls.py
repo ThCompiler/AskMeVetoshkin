@@ -16,7 +16,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+
+from AskMeVetoshkin import settings
 from app import views
+from django.conf.urls.static import static
 
 urlpatterns = [
     #path('silk/', include('silk.urls', namespace='silk')),
@@ -29,5 +32,7 @@ urlpatterns = [
     path('signup/', views.sign_up, name="signup"),
     path('quest/<int:pk>/', views.current_question, name='current_question'),
     path('set/', views.settings, name="settings"),
-    path('', views.index,  name="root")
-]
+    path('', views.index,  name="root"),
+    path('logout/', views.log_out,  name="logout"),
+    path('tag_autocomplete/', views.tag_autocomplete,  name="tags")
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

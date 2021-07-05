@@ -15,7 +15,11 @@
                     </form>
                 </div>
                 <div class="col-3 zero-right-padding">
-                    {%  include "include/logined.html" %}
+                    {% if request.user.is_authenticated %}
+                        {%  include "include/logined.html" %}
+                    {% else %}
+                        {%  include "include/not_logined.html" %}
+                    {% endif %}
                 </div>
           </div>
         </div>

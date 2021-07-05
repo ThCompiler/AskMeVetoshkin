@@ -1,6 +1,8 @@
 {% extends "include/base.html" %}
 {% load static %}
 
+{% load bootstrap4 %}
+
 {%  block content_head %}
    {{ object.title }}
 {%  endblock content_head %}
@@ -45,10 +47,18 @@
 
 {%  block content_end %}
     {% include "include/pagination.html" %}
-    <form id="new-answer" class="enter-answer">
-        <div class="mb-3">
-            <textarea class="form-control form-control-lg" id="TextForm" placeholder="Введите ваш ответ" rows="4" required></textarea>
-            <button class="btn btn-outline-primary btn-answer" type="submit">Отправить</button>
-        </div>
-    </form>
+    {% if request.user.is_authenticated %}
+        <form novalidate id="new-answer" class="enter-answer" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+             <button class="btn btn-outline-primary btn-answer" type="submit">Отправить</button>
+            {% endbuttons %}
+        </form>
+    {% else %}
+        <h1 class = "empty-answers">Чтобы оставить ответ
+            <a class="nav-link fix-display answer-link" href="{% url 'login' %}?next={{ request.get_full_path|urlencode }}">
+                войдите в аккаунт
+            </a> </h1>
+    {% endif %}
 {%  endblock content_end %}

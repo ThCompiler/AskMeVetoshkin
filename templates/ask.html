@@ -1,28 +1,19 @@
 {% extends "include/base.html" %}
 
+{% load bootstrap4 %}
+
 {%  block content_head %}
     Новый вопрос
 {%  endblock content_head %}
 
 {%  block content %}
-    <h3 class="error"> Ошибка </h3>
-    <form id="new-question">
-        <div class="mb-3">
-            <label for="TitleForm" class="form-label form-title">Заголовок</label>
-            <input type="Title" class="form-control" id="TitleForm" placeholder="Как построить лунный парк?" required>
-        </div>
-        <div class="mb-3">
-            <label for="TextForm" class="form-label form-title">Формулировка вопроса</label>
-            <textarea class="form-control form-control-lg" id="TextForm" rows="6" required></textarea>
-        </div>
-        <label for="exampleDataList" class="form-label form-title">Подходящие тэги</label>
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Кошка">
-        <datalist id="datalistOptions">
-            {% for tag in tags %}
-                <option value="{{ tag }}">
-            {% endfor %}
-        </datalist>
+    <!--<h3 class="error"> Ошибка </h3>-->
+    <form id="new-question" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
         <button class="btn float-right btn-outline-primary btn-add-question" type="submit">Задать</button>
+        {% endbuttons %}
     </form>
 {%  endblock content %}
 
